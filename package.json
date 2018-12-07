@@ -22,5 +22,9 @@
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {
+    "parzen": "^1.0.9",
+    "tracery-grammar": "^2.7.3"
   }
 }
