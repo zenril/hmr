@@ -24,7 +24,10 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
+    "p5": "^0.7.2",
     "parzen": "^1.0.9",
-    "tracery-grammar": "^2.7.3"
+    "tracery-grammar": "^2.7.3",
+    "vanilla-vectors-3d": "^1.0.1",
+    "vector-object": "^1.2.0"
   }
 }
