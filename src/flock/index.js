@@ -10,7 +10,7 @@ var p5 = new P5(function(p) {
 
     config.width = p.windowWidth;
     config.height = p.windowHeight;
-    
+
     p.createCanvas(
       config.width,
       config.height
@@ -31,7 +31,7 @@ var p5 = new P5(function(p) {
   }
 
   p.draw = function(){
-    p.background(51);
+    p.background(255);
 
     for (let boid of flock.boids) {
       boid.edges();

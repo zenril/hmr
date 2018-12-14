@@ -118,8 +118,8 @@ export class Boid {
   }
 
   draw(p){
-    p.strokeWeight(2);
-    p.stroke(255);
+    p.strokeWeight(4);
+    p.stroke(67,67,255);
     p.point(this.position.x, this.position.y);
   }
 }
