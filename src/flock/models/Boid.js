@@ -49,6 +49,49 @@ export class Boid {
     return steering;
   }
 
+  separation() {
+    let perceptionRadius = 24;
+    let steering = new Vector(0,0,0);
+    let total = 0;
+    for (let other of flock.boids) {
+      let d = this.position.dist(other.position);
+      if (other != this && d < perceptionRadius) {
+        let diff = Vector.sub(this.position, other.position);
+        diff.div(d * d);
+        steering.add(diff);
+        total++;
+      }
+    }
+    if (total > 0) {
+      steering.div(total);
+      steering.setMag(this.maxSpeed);
+      steering.sub(this.velocity);
+      steering.limit(this.maxForce);
+    }
+    return steering;
+  }
+
+  cohesion(boids) {
+    let perceptionRadius = 50;
+    let steering = new Vector(0,0,0);
+    let total = 0;
+    for (let other of flock.boids) {
+      let d = this.position.dist(other.position);
+      if (other != this && d < perceptionRadius) {
+        steering.add(other.position);
+        total++;
+      }
+    }
+    if (total > 0) {
+      steering.div(total);
+      steering.sub(this.position);
+      steering.setMag(this.maxSpeed);
+      steering.sub(this.velocity);
+      steering.limit(this.maxForce);
+    }
+    return steering;
+  }
+
   update() {
     this.position.add(this.velocity);
     this.velocity.add(this.acceleration);
@@ -58,16 +101,16 @@ export class Boid {
 
   flock() {
     let alignment = this.align();
-    //let cohesion = this.cohesion(boids);
-    //let separation = this.separation(boids);
+    let cohesion = this.cohesion();
+    let separation = this.separation();
 
     alignment.mult(1.5);
-   // cohesion.mult(cohesionSlider.value());
-    //separation.mult(separationSlider.value());
+    cohesion.mult(1);
+    separation.mult(2);
 
     this.acceleration.add(alignment);
-    // this.acceleration.add(cohesion);
-    // this.acceleration.add(separation);
+    this.acceleration.add(cohesion);
+    this.acceleration.add(separation);
   }
 
   draw(p){
