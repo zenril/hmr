@@ -16,3 +16,5 @@ export class Flock {
     // p.point(this.position.x, this.position.y);
   }
 }
+
+export const instance =  new Flock();
