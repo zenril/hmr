@@ -7,6 +7,10 @@ var p5 = new P5(function(p) {
 
   p.setup = function(){
     // console.log(p5.Vector.random3D());
+
+    config.width = p.windowWidth;
+    config.height = p.windowHeight;
+    
     p.createCanvas(
       config.width,
       config.height
@@ -18,6 +22,12 @@ var p5 = new P5(function(p) {
       flock.add(new Boid());
     }
 
+  }
+
+  p.windowResized = function() {
+    config.width = p.windowWidth;
+    config.height = p.windowHeight;
+    p.resizeCanvas(config.width, config.height);    
   }
 
   p.draw = function(){
