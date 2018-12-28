@@ -161,6 +161,15 @@ export class Vector {
     return h;
   };
 
+  angle() {
+    return Math.atan2(this.y, this.x) * 180 / Math.PI;
+  };
+  
+  angleOf(v) {
+    return Math.atan2(this.y - v.y, this.x - v.x) * 180 / Math.PI;
+  };
+
+
   rotate(a) {
     var newHeading = this.heading() + a;
     var mag = this.mag();
@@ -173,7 +182,7 @@ export class Vector {
     var dotmagmag = this.dot(v) / (this.mag() * v.mag());
 
     var angle = Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
-    return angle;
+    return angle * 180 / Math.PI;
   };
 
   lerp(x, y, z, amt) {
